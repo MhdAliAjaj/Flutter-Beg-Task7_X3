@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task7/core/style/app_color.dart';
-import 'package:task7/view/onboarding/onboarding.dart';
+import 'package:task6/core/style/appcolor.dart';
+import 'package:task6/view/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,14 +9,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: AppColor.background),
-      home: OnboardingPage(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,
+        appBarTheme: AppBarTheme(backgroundColor: AppColors.background),
+      ),
+      home: HomePage(),
     );
   }
 }
-//test
