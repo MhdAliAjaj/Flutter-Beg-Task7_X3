@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:task6/controller/productcontroller.dart';
-import 'package:task6/core/style/apptextstyle.dart';
-import 'package:task6/model/productmodel.dart';
-import 'package:task6/view/details.dart';
-import 'package:task6/widget/offercard.dart';
-import 'package:task6/widget/productcard.dart';
+import 'package:task_7_x3/controller/productcontroller.dart';
+import 'package:task_7_x3/core/style/apptextstyle.dart';
+import 'package:task_7_x3/model/productmodel.dart';
+import 'package:task_7_x3/view/details.dart';
+import 'package:task_7_x3/widget/offercard.dart';
+import 'package:task_7_x3/widget/productcard.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -228,17 +228,19 @@ class _HomePageState extends State<HomePage> {
                     ? controller.fetchCategoryAll(tabs[selectedTab])
                     : controller.fetchCategoryTwo(tabs[selectedTab]),
                 builder: (c, s) {
-                  if (s.connectionState == ConnectionState.waiting)
+                  if (s.connectionState == ConnectionState.waiting) {
                     return const Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 40),
                         child: CircularProgressIndicator(),
                       ),
                     );
-                  if (s.hasError)
+                  }
+                  if (s.hasError) {
                     return Center(child: Text("Error: ${s.error}"));
+                  }
                   var prods = s.data ?? [];
-                  if (searchQuery.isNotEmpty)
+                  if (searchQuery.isNotEmpty) {
                     prods = prods
                         .where(
                           (p) => p.title.toLowerCase().contains(
@@ -246,6 +248,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         )
                         .toList();
+                  }
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

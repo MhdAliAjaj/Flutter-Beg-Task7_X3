@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task7/core/style/app_color.dart';
+import 'package:task_7_x3/core/style/appcolor.dart';
 
 class ProgressIndicatorWidget extends StatelessWidget {
   final int currentIndex;
@@ -11,17 +11,17 @@ class ProgressIndicatorWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(3, (index) {
-        final color = index == currentIndex
-            ? AppColor.progressActive
-            : AppColor.progressInactive;
+        final isActive = index == currentIndex;
 
         return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: 30,
-          height: 6,
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          width: isActive ? 25 : 8,
+          height: 4,
           decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(3),
+            color: isActive
+                ? AppColors.onboardingButtonBg
+                : AppColors.onboardingSubtext.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(2),
           ),
         );
       }),

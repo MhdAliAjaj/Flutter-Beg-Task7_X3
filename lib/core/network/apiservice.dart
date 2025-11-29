@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:task6/model/productmodel.dart';
-
+import 'package:task_7_x3/model/productmodel.dart';
 
 class ApiService {
   static const String baseUrl = "https://fakestoreapi.com";
 
-  Future<List<Product>> getProductsByCategoryLimit(String category, int limit) async {
+  Future<List<Product>> getProductsByCategoryLimit(
+    String category,
+    int limit,
+  ) async {
     final response = await http.get(
       Uri.parse("$baseUrl/products/category/$category?limit=$limit"),
     );

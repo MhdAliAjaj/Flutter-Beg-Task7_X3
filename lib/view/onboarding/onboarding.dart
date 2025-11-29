@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:task7/controller/onboarding_controller.dart';
-import 'package:task7/core/style/app_color.dart';
-import 'package:task7/model/onboarding_model.dart';
+import 'package:task_7_x3/controller/onboarding_controller.dart';
+import 'package:task_7_x3/core/style/appcolor.dart';
+import 'package:task_7_x3/model/onboarding_model.dart';
+import 'package:task_7_x3/view/homepage.dart';
 import 'onboarding_step.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -18,31 +19,37 @@ class _OnboardingPageState extends State<OnboardingPage> {
     OnboardingModel(
       title: "WELCOME TO BYTE BOUTIQUE",
       buttonText: "Get Started",
-      textColor: AppColor.white,
+      textColor: AppColors.onboardingText,
       progressIndex: 0,
     ),
     OnboardingModel(
       title: "Let's Start Journey",
       subtitle: "Smart, Gorgeous & Fashionable Collection Explore Now",
       buttonText: "Next",
-      textColor: AppColor.accent1,
+      textColor: AppColors.onboardingText,
       progressIndex: 1,
     ),
     OnboardingModel(
       title: "You Have The Power To",
       subtitle: "There Are Many Beautiful And Attractive Plants To Your Room",
       buttonText: "Next",
-      textColor: AppColor.accent2,
+      textColor: AppColors.onboardingText,
       progressIndex: 2,
     ),
   ];
 
   void refresh() => setState(() {});
 
+  void _navigateToHome() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.background,
+      backgroundColor: AppColors.onboardingBg,
       body: PageView.builder(
         controller: controller.pageController,
         itemCount: screens.length,
@@ -50,7 +57,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
         itemBuilder: (context, index) {
           return OnboardingStep(
             data: screens[index],
-            onPressed: () => controller.nextPage(refresh),
+            onPressed: () {
+              if (controller.currentPage < 2) {
+                controller.nextPage(refresh);
+              } else {
+                _navigateToHome();
+              }
+            },
           );
         },
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task6/core/style/apptextstyle.dart';
-import 'package:task6/model/productmodel.dart';
-import 'package:task6/view/homepage.dart';
+import 'package:task_7_x3/core/style/apptextstyle.dart';
+import 'package:task_7_x3/model/productmodel.dart';
+import 'package:task_7_x3/view/homepage.dart';
 
 class DetailsPage extends StatelessWidget {
   final Product product;

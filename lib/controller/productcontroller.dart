@@ -1,5 +1,5 @@
-import 'package:task6/core/network/apiservice.dart';
-import 'package:task6/model/productmodel.dart';
+import 'package:task_7_x3/core/network/apiservice.dart';
+import 'package:task_7_x3/model/productmodel.dart';
 
 class ProductController {
   final ApiService _apiService = ApiService();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task6/core/style/appcolor.dart';
-import 'package:task6/core/style/apptextstyle.dart';
-import 'package:task6/model/productmodel.dart';
+import 'package:task_7_x3/core/style/appcolor.dart';
+import 'package:task_7_x3/core/style/apptextstyle.dart';
+import 'package:task_7_x3/model/productmodel.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
