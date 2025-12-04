@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_7_x3/core/style/appcolor.dart';
+import 'package:task_7_x3/core/style/app_color.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -9,33 +9,16 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 600;
-
-    return Container(
-      width: double.infinity,
-      height: size.height * 0.06,
-      decoration: BoxDecoration(
-        color: AppColors.onboardingButtonBg,
-        borderRadius: BorderRadius.circular(12),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.white,
+        foregroundColor: Colors.black,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(12),
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: AppColors.onboardingButtonText,
-                fontSize: isMobile ? size.width * 0.04 : size.width * 0.032,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.3,
-              ),
-            ),
-          ),
-        ),
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
     );
   }

@@ -1,5 +1,3 @@
-
-
 import '../core/network/user_service.dart';
 import '../core/utils/shared_preference.dart';
 import '../model/api_response.dart';
@@ -13,8 +11,8 @@ class UserController {
   UserController({
     required UserService userService,
     required SharedPrefs sharedPrefs,
-  })  : _userService = userService,
-        _sharedPrefs = sharedPrefs;
+  }) : _userService = userService,
+       _sharedPrefs = sharedPrefs;
 
   // Get user profile
   Future<ApiResponse<User>> getUserProfile({bool forceRefresh = false}) async {
@@ -34,10 +32,7 @@ class UserController {
       return ApiResponse.success(_cachedUser!);
     }
 
-    final response = await _userService.getUserProfile(
-      userId,
-      token: token,
-    );
+    final response = await _userService.getUserProfile(userId, token: token);
 
     if (response.success && response.data != null) {
       _cachedUser = response.data! as User?;
@@ -52,11 +47,10 @@ class UserController {
 
     return response;
   }
-//get user image
+  //get user image
 
   Future<String?> getProfileImage() async {
     try {
-
       final localData = _sharedPrefs.getUserData();
       if (localData != null && localData['image'] != null) {
         return localData['image'].toString();
@@ -64,7 +58,7 @@ class UserController {
       final token = _sharedPrefs.getToken();
       if (token != null) {
         final response = await _userService.getCurrentUser(token: token);
-        if (response.success && response.data != null && response.data!.image != null) {
+        if (response.success && response.data != null) {
           return response.data!.image;
         }
       }
@@ -74,16 +68,14 @@ class UserController {
       return null;
     }
   }
+
   // Update user profile
   Future<ApiResponse<Object>> updateProfile({
     String? email,
     String? username,
     String? imageUrl,
-    String? password
-
-
+    String? password,
   }) async {
-
     final token = _sharedPrefs.getToken();
     final userId = _sharedPrefs.getUserId();
 
@@ -96,8 +88,8 @@ class UserController {
       token: token,
       email: email,
       username: username,
-     password: password,
-      imageUrl: imageUrl
+      password: password,
+      imageUrl: imageUrl,
     );
 
     if (response.success && response.data != null) {
@@ -112,7 +104,6 @@ class UserController {
     return response;
   }
 
-
   User? getCurrentUser() {
     if (_cachedUser != null) {
       return _cachedUser;
@@ -123,12 +114,12 @@ class UserController {
       try {
         _cachedUser = User.fromJson(userData);
         return _cachedUser;
-      } catch (e) {
-      }
+      } catch (e) {}
     }
 
     return null;
   }
+
   Future<Map<String, dynamic>> updateProfileData({
     required String fullName,
     required String email,
@@ -140,19 +131,15 @@ class UserController {
       final userId = _sharedPrefs.getUserId();
 
       if (token == null || userId == null) {
-        return {
-          'success': false,
-          'message': 'User not authenticated',
-        };
+        return {'success': false, 'message': 'User not authenticated'};
       }
       final nameParts = fullName.trim().split(' ');
       final firstName = nameParts.first;
       Map<String, dynamic> updateData = {
         'firstName': firstName,
         'email': email,
-        'password':password,
+        'password': password,
       };
-
 
       if (password != '***********' && password.isNotEmpty) {
         updateData['password'] = password;
@@ -166,13 +153,9 @@ class UserController {
       );
 
       if (response.success && response.data != null) {
-
         await _sharedPrefs.saveUserData(response.data!.toJson());
 
-
-        if (password != '***********' && password.isNotEmpty) {
-
-        }
+        if (password != '***********' && password.isNotEmpty) {}
 
         return {
           'success': true,
@@ -186,12 +169,10 @@ class UserController {
         };
       }
     } catch (e) {
-      return {
-        'success': false,
-        'message': 'Error: ${e.toString()}',
-      };
+      return {'success': false, 'message': 'Error: ${e.toString()}'};
     }
   }
+
   Future<Map<String, String>> getUserProfileData() async {
     try {
       final token = _sharedPrefs.getToken();
@@ -213,8 +194,6 @@ class UserController {
         final firstName = localData['name']?['firstname'] ?? '';
         final fullName = '$firstName'.trim();
         final email = localData['email'] ?? '';
-        final password = localData['password'];
-
         return {
           'fullName': fullName.isNotEmpty ? fullName : 'Fregemmer X',
           'email': email.isNotEmpty ? email : 'programmer@gmail.com',
@@ -229,7 +208,6 @@ class UserController {
         'phone': '',
         'status': 'default',
       };
-
     } catch (error) {
       return {
         'fullName': 'Fregemmer X',
@@ -241,20 +219,15 @@ class UserController {
       };
     }
   }
+
   Future<Map<String, dynamic>> updateUserImage(String imageUrl) async {
-
-
     try {
       final token = _sharedPrefs.getToken();
       final userId = _sharedPrefs.getUserId();
 
       if (token == null || userId == null) {
-        return {
-          'success': false,
-          'message': 'User not authenticated',
-        };
+        return {'success': false, 'message': 'User not authenticated'};
       }
-
 
       final response = await _userService.updateProfile(
         userId: userId,
@@ -263,7 +236,6 @@ class UserController {
       );
 
       if (response.success && response.data != null) {
-
         await _sharedPrefs.saveUserData(response.data!.toJson());
 
         return {
@@ -278,18 +250,12 @@ class UserController {
         };
       }
     } catch (error) {
-      return {
-        'success': false,
-        'message': 'Error: ${error.toString()}',
-      };
+      return {'success': false, 'message': 'Error: ${error.toString()}'};
     }
   }
-
-
 
   // Clear user cache
   void clearCache() {
     _cachedUser = null;
   }
-
 }

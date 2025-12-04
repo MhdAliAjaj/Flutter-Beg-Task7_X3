@@ -4,20 +4,18 @@ class OnboardingController {
   final PageController pageController = PageController();
   int currentPage = 0;
 
-  void nextPage(VoidCallback refresh) {
+  void next(VoidCallback refresh) {
     if (currentPage < 2) {
       pageController.nextPage(
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
+        curve: Curves.easeOut,
       );
       currentPage++;
       refresh();
-    } else {
-      // Navigate to home or login
     }
   }
 
-  void onPageChanged(int index, VoidCallback refresh) {
+  void onChanged(int index, VoidCallback refresh) {
     currentPage = index;
     refresh();
   }

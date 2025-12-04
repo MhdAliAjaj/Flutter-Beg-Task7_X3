@@ -43,6 +43,5 @@ class ProductResultsList extends StatelessWidget {
         );
       },
     );
-    ;
   }
 }
