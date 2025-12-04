@@ -5,6 +5,7 @@ import 'package:task_7_x3/model/productmodel.dart';
 import 'package:task_7_x3/view/details.dart';
 import 'package:task_7_x3/widget/offercard.dart';
 import 'package:task_7_x3/widget/productcard.dart';
+import 'package:task_7_x3/widget/custom_bottom_nav.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,8 +17,23 @@ class _HomePageState extends State<HomePage> {
   final controller = ProductController();
   String searchQuery = "";
   int selectedTab = 0;
+  int navIndex = 0;
   bool showAll = false;
   final tabs = ["men's clothing", "women's clothing", "jewelery"];
+
+  void _onNavTap(int idx) {
+    if (idx == 0) {
+      setState(() => navIndex = 0);
+    } else if (idx == 2) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Center action tapped')));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Nav item $idx not implemented yet')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +51,12 @@ class _HomePageState extends State<HomePage> {
         : 35.0;
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _onNavTap(2),
+        backgroundColor: const Color(0xFF34C759),
+        child: const Icon(Icons.lock_outline),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 250, 249, 244),
         title: Row(
@@ -316,6 +338,10 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNav(
+        currentIndex: navIndex,
+        onTap: (i) => _onNavTap(i),
       ),
     );
   }

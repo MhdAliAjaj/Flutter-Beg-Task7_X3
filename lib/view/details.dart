@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_7_x3/core/style/apptextstyle.dart';
 import 'package:task_7_x3/model/productmodel.dart';
 import 'package:task_7_x3/view/homepage.dart';
+import 'package:task_7_x3/widget/custom_bottom_nav.dart';
 
 class DetailsPage extends StatelessWidget {
   final Product product;
@@ -13,6 +14,14 @@ class DetailsPage extends StatelessWidget {
         h = MediaQuery.of(context).size.height;
     final isTab = w > 600, pad = isTab ? 16.0 : 12.0;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Center action tapped'))),
+        backgroundColor: const Color(0xFF34C759),
+        child: const Icon(Icons.lock_outline),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
         title: Text(
           product.category,
@@ -139,6 +148,24 @@ class DetailsPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNav(
+        currentIndex: 0,
+        onTap: (i) {
+          if (i == 0) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const HomePage()),
+            );
+          } else if (i == 2) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Center action tapped')),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Nav item $i not implemented')),
+            );
+          }
+        },
       ),
     );
   }
