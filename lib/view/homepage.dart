@@ -3,6 +3,8 @@ import 'package:task_7_x3/controller/productcontroller.dart';
 import 'package:task_7_x3/core/style/apptextstyle.dart';
 import 'package:task_7_x3/model/productmodel.dart';
 import 'package:task_7_x3/view/details.dart';
+import 'package:task_7_x3/view/search_page.dart';
+import 'package:task_7_x3/view/profile_page.dart';
 import 'package:task_7_x3/widget/offercard.dart';
 import 'package:task_7_x3/widget/productcard.dart';
 import 'package:task_7_x3/widget/custom_bottom_nav.dart';
@@ -25,9 +27,15 @@ class _HomePageState extends State<HomePage> {
     if (idx == 0) {
       setState(() => navIndex = 0);
     } else if (idx == 2) {
-      ScaffoldMessenger.of(
+      Navigator.push(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Center action tapped')));
+        MaterialPageRoute(builder: (_) => const SearchScreen()),
+      );
+    } else if (idx == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const ProfileScreen()),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Nav item $idx not implemented yet')),

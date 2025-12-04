@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../model/product_model.dart';
+import '../../model/productmodel.dart';
 
 class ProductResultsList extends StatelessWidget {
   final List<Product> products;
-  const ProductResultsList({super.key,
-    required this.products,
-   });
+  const ProductResultsList({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
-
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       itemCount: products.length,
@@ -32,20 +29,20 @@ class ProductResultsList extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
-                  p.title,
-                  style: const TextStyle(fontSize: 16),
-                ),
+                child: Text(p.title, style: const TextStyle(fontSize: 16)),
               ),
               Text(
                 "\$${p.price}",
                 style: const TextStyle(
-                    fontSize: 16, fontWeight: FontWeight.bold),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
         );
       },
-    );;
+    );
+    ;
   }
 }

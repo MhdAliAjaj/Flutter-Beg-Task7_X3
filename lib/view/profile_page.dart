@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled8/core/style/app_color.dart';
-import 'package:untitled8/widget/profile/custom_app_bar.dart';
-import 'package:untitled8/widget/profile/custom_text_feild.dart';
-import 'package:untitled8/widget/profile/loading_inddicator.dart';
-import 'package:untitled8/widget/profile/save_button.dart';
+import 'package:task_7_x3/core/style/app_color.dart';
+import 'package:task_7_x3/widget/profile/custom_app_bar.dart';
+import 'package:task_7_x3/widget/profile/custom_text_feild.dart';
+import 'package:task_7_x3/widget/profile/loading_inddicator.dart';
+import 'package:task_7_x3/widget/profile/save_button.dart';
 import '../controller/user_controller.dart';
 
 import '../core/network/user_service.dart';
@@ -20,7 +20,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   late UserController _userController;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -30,7 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _obscurePassword = true;
   bool _isEditing = true;
   String? _profileImageUrl;
-
 
   @override
   void initState() {
@@ -55,14 +53,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
 
     try {
-
       final userData = await _userController.getUserProfileData();
-
 
       _nameController.text = userData['fullName'] ?? 'Fregemmer X';
       _emailController.text = userData['email'] ?? 'programmer@gmail.com';
       _passwordController.text = userData['password'] ?? '***********';
-
 
       final imageUrl = await _userController.getProfileImage();
       if (imageUrl != null) {
@@ -84,7 +79,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _saveProfile() async {
-
     if (_nameController.text.isEmpty || _emailController.text.isEmpty) {
       _showSnackBar("Please fill in all required fields");
       return;
@@ -100,7 +94,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
 
     try {
-
       final result = await _userController.updateProfileData(
         fullName: _nameController.text,
         email: _emailController.text,
@@ -113,7 +106,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       if (result['success'] == true) {
         _showSnackBar(result['message'] ?? "Profile saved successfully!");
-
 
         await _loadUserData();
 
@@ -185,14 +177,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: AppColor.scaffoldBackground,
       appBar: CustomAppBar(title: "Profile"),
-      body: _isLoading
-          ? LoadingInddicator()
-          : _buildProfileContent(),
+      body: _isLoading ? LoadingInddicator() : _buildProfileContent(),
     );
   }
-
-
-
 
   Widget _buildProfileContent() {
     return SingleChildScrollView(
@@ -205,37 +192,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 40),
 
           // Name Field
-          FeildLabel(label: 'Your Name',),
+          FeildLabel(label: 'Your Name'),
           const SizedBox(height: 8),
           CustomTextFeild(
-              controller: _nameController,
-              hintText: "Enter Your Name ",
-              prefixIcon: Icons.person),
+            controller: _nameController,
+            hintText: "Enter Your Name ",
+            prefixIcon: Icons.person,
+          ),
           const SizedBox(height: 24),
           // Email Field
           FeildLabel(label: "Email Address"),
           const SizedBox(height: 8),
           CustomTextFeild(
-              controller: _emailController,
-              hintText: "Enter Your Email ",
-              prefixIcon: Icons.email_outlined),
+            controller: _emailController,
+            hintText: "Enter Your Email ",
+            prefixIcon: Icons.email_outlined,
+          ),
           const SizedBox(height: 24),
           // Password Field
           FeildLabel(label: "Password"),
           const SizedBox(height: 8),
           CustomTextFeild(
-              controller: _passwordController,
-              hintText: "Enter Your Password ",
-              prefixIcon: Icons.password),
+            controller: _passwordController,
+            hintText: "Enter Your Password ",
+            prefixIcon: Icons.password,
+          ),
           const SizedBox(height: 8),
           // Discover Password Link
-          if (_isEditing)
-            _buildDiscoverPasswordLink(),
+          if (_isEditing) _buildDiscoverPasswordLink(),
           const SizedBox(height: 40),
           // Save Button
           if (_isEditing)
             SaveButton(
-                isLoading: _isLoading, onPressed: _saveProfile,primary: AppColor.primary,)
+              isLoading: _isLoading,
+              onPressed: _saveProfile,
+              primary: AppColor.primary,
+            ),
         ],
       ),
     );
@@ -253,25 +245,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColor.fieldBackground,
-                border: Border.all(
-                  color: AppColor.borderLight,
-                  width: 2,
-                ),
+                border: Border.all(color: AppColor.borderLight, width: 2),
               ),
               child: _profileImageUrl != null
                   ? ClipOval(
-                child: Image.network(
-                  _profileImageUrl!,
-                  fit: BoxFit.cover,
-                  width: 120,
-                  height: 120,
-                ),
-              )
-                  : Icon(
-                Icons.person,
-                size: 60,
-                color: AppColor.textHint,
-              ),
+                      child: Image.network(
+                        _profileImageUrl!,
+                        fit: BoxFit.cover,
+                        width: 120,
+                        height: 120,
+                      ),
+                    )
+                  : Icon(Icons.person, size: 60, color: AppColor.textHint),
             ),
             if (_isEditing)
               Positioned(
@@ -283,16 +268,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColor.primary,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 3,
-                    ),
+                    border: Border.all(color: Colors.white, width: 3),
                   ),
-                  child: Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                    size: 20,
-                  ),
+                  child: Icon(Icons.edit, color: Colors.white, size: 20),
                 ),
               ),
           ],
@@ -380,21 +358,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         child: _isLoading
             ? SizedBox(
-          width: 24,
-          height: 24,
-          child: CircularProgressIndicator(
-            color: Colors.white,
-            strokeWidth: 2,
-          ),
-        )
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ),
+              )
             : Text(
-          "Save Now",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
-        ),
+                "Save Now",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.5,
+                ),
+              ),
       ),
     );
   }

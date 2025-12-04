@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled8/core/style/app_color.dart';
+import 'package:task_7_x3/core/style/app_color.dart';
 
 class LoadingInddicator extends StatelessWidget {
   const LoadingInddicator({super.key});
@@ -14,14 +14,10 @@ class LoadingInddicator extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             'Loading profile...',
-            style: TextStyle(
-              color: AppColor.textHint,
-              fontSize: 16,
-            ),
+            style: TextStyle(color: AppColor.textHint, fontSize: 16),
           ),
         ],
       ),
     );
   }
-  }
-
+}
