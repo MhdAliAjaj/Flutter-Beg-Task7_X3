@@ -16,6 +16,10 @@ class AppColor {
   static const Color textHint = Colors.grey;
   static const Color textPrimary = Colors.black87;
   static const Color textButton = Colors.white;
+  // Additional aliases used across onboarding widgets
+  static const Color textSecondary = Color(0xFFB0B0B0);
+  static const Color progressWhite = Colors.white;
+  static const Color progressGreen = Color(0xFF34C759);
 }
 
 

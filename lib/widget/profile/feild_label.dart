@@ -16,6 +16,5 @@ class FeildLabel extends StatelessWidget {
         letterSpacing: 0.15,
       ),
     );
-    ;
   }
 }

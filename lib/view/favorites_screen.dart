@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:task_7_x3/model/favorite_item_model.dart';
 import '../core/theme.dart';
-import '../models/favorite_item_model.dart';
+// duplicate relative import removed; using package import above
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
@@ -64,7 +65,13 @@ class FavoritesScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Center(
-                    child: Text( "Favourite",  style: TextStyle(fontFamily: 'Raleway', fontSize: w * 0.042, fontWeight: FontWeight.w600, ),
+                    child: Text(
+                      "Favourite",
+                      style: TextStyle(
+                        fontFamily: 'Raleway',
+                        fontSize: w * 0.042,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
@@ -76,7 +83,9 @@ class FavoritesScreen extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
-                  child: Center(child: SvgPicture.asset('assets/icons/heart_black.svg')),
+                  child: Center(
+                    child: SvgPicture.asset('assets/icons/heart_black.svg'),
+                  ),
                 ),
               ],
             ),
@@ -157,10 +166,7 @@ class FavoritesScreen extends StatelessWidget {
 
                   Text(
                     "Programmer T-shirt",
-                    style: TextStyle(
-                      fontSize: w * 0.037,
-                      color: Colors.black,
-                    ),
+                    style: TextStyle(fontSize: w * 0.037, color: Colors.black),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -182,7 +188,9 @@ class FavoritesScreen extends StatelessWidget {
                         children: List.generate(
                           colors.length,
                           (index) => Container(
-                            margin: EdgeInsets.only(left: index == 0 ? 0 : w * 0.02),
+                            margin: EdgeInsets.only(
+                              left: index == 0 ? 0 : w * 0.02,
+                            ),
                             width: w * 0.038,
                             height: w * 0.038,
                             decoration: BoxDecoration(

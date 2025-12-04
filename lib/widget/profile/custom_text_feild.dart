@@ -28,11 +28,10 @@ class CustomTextFeild extends StatelessWidget {
       ),
       child: Row(
         children: [
-          if (prefixIcon != null)
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 12),
-              child: Icon(prefixIcon, color: AppColor.textHint, size: 24),
-            ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 12),
+            child: Icon(prefixIcon, color: AppColor.textHint, size: 24),
+          ),
           Expanded(
             child: TextField(
               controller: controller,
@@ -58,6 +57,5 @@ class CustomTextFeild extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
