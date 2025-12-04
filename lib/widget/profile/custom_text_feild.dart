@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled8/core/style/app_color.dart';
+import 'package:task_7_x3/core/style/app_color.dart';
 
 class CustomTextFeild extends StatelessWidget {
   final TextEditingController controller;
@@ -8,12 +8,14 @@ class CustomTextFeild extends StatelessWidget {
   final TextInputType keyboardType;
   final IconData prefixIcon;
 
-  const CustomTextFeild({super.key,
+  const CustomTextFeild({
+    super.key,
     required this.controller,
     required this.hintText,
-     this.enable=true,
-    this. keyboardType = TextInputType.text,
-     required this.prefixIcon,});
+    this.enable = true,
+    this.keyboardType = TextInputType.text,
+    required this.prefixIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +24,14 @@ class CustomTextFeild extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColor.fieldBackground,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppColor.borderLight,
-          width: 1,
-        ),
+        border: Border.all(color: AppColor.borderLight, width: 1),
       ),
       child: Row(
         children: [
           if (prefixIcon != null)
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 12),
-              child: Icon(
-                prefixIcon,
-                color: AppColor.textHint,
-                size: 24,
-              ),
+              child: Icon(prefixIcon, color: AppColor.textHint, size: 24),
             ),
           Expanded(
             child: TextField(
@@ -62,6 +57,7 @@ class CustomTextFeild extends StatelessWidget {
           ),
         ],
       ),
-    );;
+    );
+    ;
   }
 }

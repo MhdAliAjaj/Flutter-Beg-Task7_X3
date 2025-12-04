@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled8/core/style/app_color.dart';
+import 'package:task_7_x3/core/style/app_color.dart';
 
 class FeildLabel extends StatelessWidget {
   final String label;
@@ -15,6 +15,7 @@ class FeildLabel extends StatelessWidget {
         fontWeight: FontWeight.w500,
         letterSpacing: 0.15,
       ),
-    );;
+    );
+    ;
   }
 }

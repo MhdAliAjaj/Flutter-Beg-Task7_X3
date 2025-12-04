@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task_7_x3/core/style/apptextstyle.dart';
 import 'package:task_7_x3/model/productmodel.dart';
 import 'package:task_7_x3/view/homepage.dart';
+import 'package:task_7_x3/view/search_page.dart';
+import 'package:task_7_x3/view/profile_page.dart';
 import 'package:task_7_x3/widget/custom_bottom_nav.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -157,8 +159,12 @@ class DetailsPage extends StatelessWidget {
               MaterialPageRoute(builder: (_) => const HomePage()),
             );
           } else if (i == 2) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Center action tapped')),
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const SearchScreen()),
+            );
+          } else if (i == 4) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const ProfileScreen()),
             );
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
